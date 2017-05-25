@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.swapperMonths {
+  text-align: center;
+  background: #9b59b6;
+  height: 37px;
+  border: 1px solid white;
+  font-size: 27px;
+  color: white
+}
+.prevDate {
+  float: left;
+  font-size: 18px;
+  margin: 8px 0 0 15px;
+}
+.nextDate {
+  float: right;
+  font-size: 18px;
+  margin: 8px 15px 0 0;
+}
+.prevDate span {
+  margin-right: 5px
+}
+.nextDate span {
+  margin-left: 5px
+}
+.currentDate {
+  display: inline-block;
+}
+#calendar {
+  width: 1379px;
+  margin: auto;
+}
+#header {
+  height: 50px;
+  font-size: 27px;
+  font-family: Roboto,Roboto;
+  color: white;
+  border-bottom: 2px solid white
+}
+#dates {
+  height: 120px;
+  background: #9b59b6;
+  border: 1px solid white;
+  color: white;
+  width: 195px;
+  display: inline-block;
+}
+.days {
+  background: #9b59b6;
+  padding: 8px 0px;
+  width: 195px;
+  border: 1px solid white;
+  text-align: center;
+  display: inline-block;
+}
