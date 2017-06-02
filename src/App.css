@@ -34,11 +34,13 @@
   float: left;
   font-size: 18px;
   margin: 8px 0 0 15px;
+  cursor: pointer;
 }
 .nextDate {
   float: right;
   font-size: 18px;
   margin: 8px 15px 0 0;
+  cursor: pointer;
 }
 .prevDate span {
   margin-right: 5px
@@ -62,17 +64,31 @@
 }
 #dates {
   height: 120px;
-  background: #9b59b6;
+  background: #CC4E1F;
   border: 1px solid white;
   color: white;
   width: 195px;
   display: inline-block;
+  cursor: pointer;
 }
+
 .days {
   background: #9b59b6;
   padding: 8px 0px;
   width: 195px;
   border: 1px solid white;
   text-align: center;
+  display: inline-block;
+}
+.LastDays, .NextDays {
+  display: inline-block;
+  cursor: pointer;
+}
+#Nextdates, #Lastdates {
+  background: #FF9D57;
+  height: 120px;
+  border: 1px solid white;
+  color: white;
+  width: 195px;
   display: inline-block;
 }

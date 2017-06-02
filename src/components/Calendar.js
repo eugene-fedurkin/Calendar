@@ -7,16 +7,33 @@ import CurrentDate from './CurrentDate'
 class Calendar extends Component {
     constructor(props) {
         super(props);
-        /*this.state = {
-            countDaysInMonth: new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate()
-        }*/
+        this.state = {currentDate: new Date().getMonth()};
+        this.month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     }
+
+    prevClick = () => {
+        if (this.state.currentDate) {
+            this.setState(currentMonth => ({
+                currentDate: currentMonth.currentDate - 1
+            }));
+        }
+    }
+    nextClick = () => {
+        console.log('work')
+        if (this.state.currentDate < 11) {
+            this.setState(currentMonth => ({
+                currentDate: currentMonth.currentDate + 1
+            }));
+        }
+    }
+
     render () {
+        console.log('STATE(MONTH)',this.state.currentDate)
         return (
             <div id="calendar">
-                <CurrentDate />
+                <CurrentDate prevClick={this.prevClick} nextClick={this.nextClick} currentMonth={this.state.currentDate} listMonths={this.month} />
                 <Days />
-                <Numbers />
+                <Numbers currentMonth={this.state.currentDate}/>
             </div>
         );
     }
