@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Days from './Days';
 import Numbers from './Numbers';
-import CurrentDate from './CurrentDate'
+import CurrentDate from './CurrentDate';
+
+import { BrowserRouter, Route, } from 'react-router-dom';
+
 
 
 class Calendar extends Component {
@@ -38,26 +41,5 @@ class Calendar extends Component {
         );
     }
 }
-/*function Month() {
-    this.date = new Date(month, year);
-    this.numberOfDays = this.date.getDate();
-    this.nameOfMonth;
-    this.firstDay;
-    this.calendar;
-}
-function Date2Day(year, month, day) {
-    return (new Date(year, month, day).getDay());
-}
-function generationCalendar(numberOfDays, month, day, year, dates = {}) {
-    let weekDay = MonthNames[Date2Day(year, month, day, year)];
-    if(weekDay in dates) {
-        dates[weekDay].push(day);
-    } else {
-        dates[weekDay] = [day]
-    }
-    day++;
-    return day > numberOfDays ? dates : generationCalendar(numberOfDays, month, day, year)
-}*/
-
 
 export default Calendar;

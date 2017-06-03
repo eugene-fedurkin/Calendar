@@ -58,7 +58,6 @@
 #header {
   height: 50px;
   font-size: 27px;
-  font-family: Roboto,Roboto;
   color: white;
   border-bottom: 2px solid white
 }
@@ -80,8 +79,8 @@
   text-align: center;
   display: inline-block;
 }
-.LastDays, .NextDays {
-  display: inline-block;
+.LastDays, .NextDays, .CurrentDays {
+  display: initial;
   cursor: pointer;
 }
 #Nextdates, #Lastdates {
