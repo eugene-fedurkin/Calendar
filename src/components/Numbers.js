@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router-dom';
+import Day from './Day';
 
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 class Numbers extends Component {
     constructor(props) {
@@ -9,8 +10,6 @@ class Numbers extends Component {
         this.arrRestDaysInLastMonth = [];
         this.arrDaysInMonth = [];
         this.arrFirstDaysInNextMonth = [];
-       // this.firstDayInCurrentMonth = this.firstDayInCurrentMonth();
-        //this.days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
         this.date =  new Date(new Date().getFullYear(), this.props.currentMonth, 1);
         this.state = {
             countDaysInMonth: new Date(new Date().getFullYear(), this.props.currentMonth + 1, 0).getDate(),
@@ -63,41 +62,31 @@ class Numbers extends Component {
             indexFirstDayInCurrentMonth: this.date.getDay()
         }));
     }
+    getRows() {
+        const allDayinCurrentMonth = this.arrRestDaysInLastMonth.concat(this.arrDaysInMonth).concat(this.arrFirstDaysInNextMonth);
+        var rows = [];
+        let row = [];
+        for (var i = 1; i <= allDayinCurrentMonth.length; i++) {
+            row.push(<div key={i} onClick={this.toggleModal} className="days">{allDayinCurrentMonth[i - 1]}</div>);
+            if (i > 1 && i % 7 === 0) {
+                rows.push(<div className='indent' key={'r' + i}>{row}</div>);
+                row = [];
+            }
+        }
+        return rows;
+    }
     render() {
         this.changeMonth();
         this.daysInMonth();
         this.firstNumberOnCalendar();
         this.restNumberNextMonth();
-        console.log(this.arrFirstDaysInNextMonth)
-        const daysLastMonthItem = this.arrRestDaysInLastMonth.map((day, index) =>
-            <div key={index} id="Lastdates">
-                {day}
-            </div>
-        );
-        const dayItem = this.arrDaysInMonth.map((day, index) =>
-            <div key={index} id="dates">
-                {day}
-            </div>
-        );
-        const daysNextMonthItem = this.arrFirstDaysInNextMonth.map((day, index) =>
-            <div key={index} id="Nextdates">
-                {day}
-            </div>
-        );
+        let rows = this.getRows();
         return (
             <div>
-                <div onClick={this.toggleModal} className="LastDays">
-                    {daysLastMonthItem}
-                </div>
-                <div onClick={this.toggleModal} className="CurrentDays">
-                    {dayItem}
-                </div>
-                <div onClick={this.toggleModal} className="NextDays">
-                    {daysNextMonthItem}
-                </div>
-                <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal}>
-                    COntent
-                </Modal>
+                {rows}
+                <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
+                        <Day />
+                    </Modal>
             </div>
         )
     }

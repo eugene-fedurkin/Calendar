@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Days extends Component {
+class DayOfTheWeek extends Component {
     render() {
         const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
         return (
@@ -17,4 +17,4 @@ class Days extends Component {
     }
 }
 
-export default Days;
+export default DayOfTheWeek;

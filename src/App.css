@@ -52,7 +52,7 @@
   display: inline-block;
 }
 #calendar {
-  width: 1379px;
+  width: 90%;
   margin: auto;
 }
 #header {
@@ -66,7 +66,7 @@
   background: #CC4E1F;
   border: 1px solid white;
   color: white;
-  width: 195px;
+  width: 12.85%;
   display: inline-block;
   cursor: pointer;
 }
@@ -74,7 +74,9 @@
 .days {
   background: #9b59b6;
   padding: 8px 0px;
-  width: 195px;
+  margin: -1px;
+  width: 14.285%;
+  /* padding: 0; */
   border: 1px solid white;
   text-align: center;
   display: inline-block;
@@ -88,6 +90,85 @@
   height: 120px;
   border: 1px solid white;
   color: white;
-  width: 195px;
+  width: 12.85%;
   display: inline-block;
+}
+.fade-enter {
+  opacity: 0
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: 0.5s ease-in-out all;
+}
+.wrapper {
+  display: flex;
+}
+.time {
+  display: inline-block;
+  width: 9%;
+  border: 1px solid black;
+  margin-right: -1px;
+  height: 50px;
+  line-height: 2;
+  text-align: center;
+  overflow: hidden;
+  font-size: 21px;
+}
+.fieldForEvent {
+  display: inline-block;
+  width: 90%;
+  border: 1px solid black;
+  height: 50px;
+}
+.title {
+  text-align: center;
+  font-size: 21px;
+}
+
+
+/*-------------------------------------------------------------------------*/
+
+
+.container {
+	text-align: center;
+}
+.animation-container {
+	display: inline-block;
+}
+.item {
+	background-color: yellow;
+	width: 400px;
+	text-align: center;
+	padding: 10px 5px;
+	margin-top: 10px;
+	border-radius: 8px;
+	font-weight: 600;
+	color: black;
+}
+.example-enter {
+    opacity: 0;
+    transform:   translate(-250px,0);
+    transform: translate3d(-250px,0,0);
+}
+.example-enter.example-enter-active {
+	opacity: 1;
+	transition: opacity 1s ease;
+	transform:   translate(110px,0);
+	transform: translate3d(110px,0,0);
+	transition-property: transform, opacity;
+	transition-duration: 300ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave {
+	opacity: 1;
+	transform:   translate(0,0,0);
+	transform: translate3d(0,0,0);
+  transition-property: transform, opacity;
+	transition-duration: 1300ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave.example-leave-active {
+	opacity: 0;
+	transform:   translate(250px,0);
+	transform: translate3d(250px,0,0);
 }

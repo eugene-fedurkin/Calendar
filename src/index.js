@@ -4,7 +4,6 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import Calendar from './components/Calendar';
-import Days from './components/Days';
 import Numbers from './components/Numbers';
 
 import { BrowserRouter, Route, } from 'react-router-dom';

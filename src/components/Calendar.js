@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Days from './Days';
+import DayOfTheWeek from './DayOfTheWeek';
 import Numbers from './Numbers';
 import CurrentDate from './CurrentDate';
 
@@ -35,7 +35,7 @@ class Calendar extends Component {
         return (
             <div id="calendar">
                 <CurrentDate prevClick={this.prevClick} nextClick={this.nextClick} currentMonth={this.state.currentDate} listMonths={this.month} />
-                <Days />
+                <DayOfTheWeek />
                 <Numbers currentMonth={this.state.currentDate}/>
             </div>
         );
