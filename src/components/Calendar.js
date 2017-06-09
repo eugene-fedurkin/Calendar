@@ -31,12 +31,12 @@ class Calendar extends Component {
     }
 
     render () {
-        console.log('STATE(MONTH)',this.state.currentDate)
+        console.log('STATE(MONTH)',this.month[this.state.currentDate - 1])
         return (
             <div id="calendar">
                 <CurrentDate prevClick={this.prevClick} nextClick={this.nextClick} currentMonth={this.state.currentDate} listMonths={this.month} />
                 <DayOfTheWeek />
-                <Numbers currentMonth={this.state.currentDate}/>
+                <Numbers currentMonth={this.state.currentDate} currentNameMonth={this.month[this.state.currentDate]} prevNameMonth={this.month[this.state.currentDate - 1]} nextNameMonth={this.month[this.state.currentDate + 1]} />
             </div>
         );
     }

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import Day from './Day';
+import ListOfDays from './ListOfDays';
 
 import { Link } from 'react-router-dom';
-import Modal from 'react-modal';
 class Numbers extends Component {
     constructor(props) {
         super(props);
@@ -13,19 +12,11 @@ class Numbers extends Component {
         this.date =  new Date(new Date().getFullYear(), this.props.currentMonth, 1);
         this.state = {
             countDaysInMonth: new Date(new Date().getFullYear(), this.props.currentMonth + 1, 0).getDate(),
-            indexFirstDayInCurrentMonth: this.date.getDay(),
-            isActive: false
+            indexFirstDayInCurrentMonth: this.date.getDay()
         };
     }
 
-    componentWillMount() {
-        Modal.setAppElement('body');
-    }
-    toggleModal = () => {
-        this.setState({
-            isActive: !this.state.isActive
-        })
-    }
+
     daysInMonth() {
         for (let i = 1; i <= this.state.countDaysInMonth; i++) {
             this.arrDaysInMonth.push(i);
@@ -67,7 +58,9 @@ class Numbers extends Component {
         var rows = [];
         let row = [];
         for (var i = 1; i <= allDayinCurrentMonth.length; i++) {
-            row.push(<div key={i} onClick={this.toggleModal} className="days">{allDayinCurrentMonth[i - 1]}</div>);
+            row.push(
+            <ListOfDays key={i} onClick={this.toggleModal} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}>
+            </ListOfDays>);
             if (i > 1 && i % 7 === 0) {
                 rows.push(<div className='indent' key={'r' + i}>{row}</div>);
                 row = [];
@@ -84,9 +77,6 @@ class Numbers extends Component {
         return (
             <div>
                 {rows}
-                <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
-                        <Day />
-                    </Modal>
             </div>
         )
     }

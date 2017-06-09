@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 class CurrentDate extends Component {
-    /*constructor(props) {
-        super(props);
-        this.currentDate = new Date().getMonth(); // --- в январе Prev отсутствует
-        this.state = {month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']};
-}*/
-
-
-
     render() {
         return (
             <div className="swapperMonths">

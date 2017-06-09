@@ -15,7 +15,7 @@ ReactDOM.render(
             <Route path="/" component={Calendar} />
             <Route path="/react" component={App} />
         </div>
-    </BrowserRouter>, 
+    </BrowserRouter>,
     document.getElementById('root')
     );
 registerServiceWorker();
