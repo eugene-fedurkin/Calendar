@@ -69,6 +69,7 @@
   width: 14.285%;
   display: inline-block;
   cursor: pointer;
+  position: relative;
 }
 
 .days {
@@ -220,7 +221,7 @@
 .noteForTime {
   padding: 0;
   margin: 0;
-  width: 133px;
+  width: 148px;
   font-size: 18px;
 }
 .dub {
@@ -228,6 +229,14 @@
 }
 .dayOfTheWeek {
   min-width: 87px;
+}
+input::placeholder {
+  color: #795548
+}
+.events {
+  position: absolute;
+  background: rebeccapurple;
+  width: 100%;
 }
 /*------------------------------------TOOLTIP-------------------------------------*/
 

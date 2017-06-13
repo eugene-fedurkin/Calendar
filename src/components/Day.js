@@ -48,7 +48,7 @@ class Day extends Component {
                     )
                 }
                     <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Inpunts">
-                        <Event />
+                        <Event currentMonth={this.props.currentMonth} number={this.props.number} />
                     </Modal>
             </div>
         );

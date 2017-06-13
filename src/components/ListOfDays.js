@@ -29,7 +29,7 @@ class ListOfDays extends Component {
         } else {
             this.monthOfModal = this.props.currentNameMonth
         }
-        this.dayOfModal = e.currentTarget.textContent;
+        this.dayOfModal = e.currentTarget.children[0].innerText;
         this.toggleModal();
     }
     render() {
@@ -37,7 +37,7 @@ class ListOfDays extends Component {
             <div onClick={this._handlers} id="dates" className="datesClass">
                 <div className="numbers">{this.props.number}</div>
                 <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
-                        <Day number={this.dayOfModal} month={this.monthOfModal}/>
+                        <Day number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal}/>
                     </Modal>
             </div>
         )

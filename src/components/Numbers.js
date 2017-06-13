@@ -55,12 +55,13 @@ class Numbers extends Component {
     }
     getRows() {
         const allDayinCurrentMonth = this.arrRestDaysInLastMonth.concat(this.arrDaysInMonth).concat(this.arrFirstDaysInNextMonth);
-        var rows = [];
+        let rows = [];
         let row = [];
-        for (var i = 1; i <= allDayinCurrentMonth.length; i++) {
+        for (let i = 1; i <= allDayinCurrentMonth.length; i++) {
             row.push(
-            <ListOfDays key={i} onClick={this.toggleModal} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}>
-            </ListOfDays>);
+            <ListOfDays key={i} onClick={this.toggleModal} currentMonth={this.props.currentMonth} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}>
+            </ListOfDays>
+            );
             if (i > 1 && i % 7 === 0) {
                 rows.push(<div className='indent' key={'r' + i}>{row}</div>);
                 row = [];
@@ -69,6 +70,7 @@ class Numbers extends Component {
         return rows;
     }
     render() {
+        console.log(this.props.currentMonth)
         this.changeMonth();
         this.daysInMonth();
         this.firstNumberOnCalendar();
