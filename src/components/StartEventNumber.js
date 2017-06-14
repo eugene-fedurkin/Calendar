@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Input from './Input';
+
 class StartEventNumber extends Component {
     componentDidMount() {
         document.getElementById('startEventNumber').value = this.props.number
@@ -16,11 +18,17 @@ class StartEventNumber extends Component {
             e.target.style.color = 'white'
         }
     }
+    getNumber = (e) => {
+        this.props.startNumber(e.target.value);
+    }
     render() {
         return(
             <div className="dub">
-                <div className="secondaryInput  dateInformation noteForTime">Start event(number):</div>
-                <input onBlur={this.handlerNumber} id="startEventNumber" className="secondaryInput dateInformation" type="text" placeholder="Day of the month" /> 
+                <div className="secondaryInput  dateInformation noteForTime">
+                    Start event(number):
+                </div>
+                <input onChange={this.getNumber} onBlur={this.handlerNumber} id="startEventNumber" className="secondaryInput dateInformation" type="text" placeholder="Day of the month" />
+                <Input startMonth={this.props.startMonth} />
             </div>
         )
     }

@@ -3,100 +3,51 @@ import FontAwesome from 'react-fontawesome';
 
 class Input extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            hour: 11,
-            minutes: '00',
-            format: 'a.m'
+            month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            currentMonth: 'January'
         }
     }
     increase = () => {
-        if (this.state.minutes == '00') {
-            this.setState(obj => ({
-                minutes: '05'
-            }))
-        } else if (+this.state.minutes < 55) {
-            this.setState(obj => ({
-                minutes: +obj.minutes + 5
-            }))
-        } else if (+this.state.hour == 12 && +this.state.minutes == 55) {
-            this.setState(obj => ({
-                hour: 1,
-                minutes: '00'
-            }))
-        } else if (+this.state.hour == 11 && +this.state.minutes == 55 && this.state.format === 'a.m') {
-            this.setState(obj => ({
-                hour: 12,
-                minutes: '00',
-                format: 'p.m'
-            }))
-        } else if (+this.state.hour == 11 && +this.state.minutes == 55 && this.state.format === 'p.m') {
-            this.setState(obj => ({
-                hour: 12,
-                minutes: '00',
-                format: 'a.m'
-            })) 
+        if (this.state.currentMonth === 'December') {
+            this.setState({
+                currentMonth: 'January'
+            })
         } else {
-            this.setState(obj => ({
-                hour: obj.hour + 1,
-                minutes: '00'
-            }))
+            this.setState({
+                currentMonth: this.state.month[this.state.month.indexOf(this.state.currentMonth) + 1]
+            })
         }
+        //this.props.startMonth(this.state.currentMonth)
     }
     decrease = () => {
-        if (this.state.minutes > 10) {
-            this.setState(obj => ({
-                minutes: +obj.minutes - 5
-            }))
-        }
-        if (this.state.minutes == '10') {
-            this.setState(obj => ({
-                minutes: '05'
-            }))
-        } else if (this.state.minutes == '05') {
-            this.setState(obj => ({
-                minutes: '00'
-            }))
-        }  else if (+this.state.hour == 1 && +this.state.minutes == '00') {
-            this.setState(obj => ({
-                hour: 12,
-                minutes: 55
-            }))
-        } else if (+this.state.hour == 12 && +this.state.minutes == '00' && this.state.format == 'p.m') {
-            this.setState(obj => ({
-                hour: 11,
-                minutes: 55,
-                format: 'a.m'
-            }))
-        } else if (+this.state.hour == 12 && +this.state.minutes == '00' && this.state.format == 'a.m') {
-            this.setState(obj => ({
-                hour: 11,
-                minutes: 55,
-                format: 'p.m'
-            })) 
-        } else if (+this.state.minutes == '00') {
-            this.setState(obj => ({
-                hour: obj.hour - 1,
-                minutes: 55
-            }))
+        if (this.state.currentMonth === 'January') {
+            this.setState({
+                currentMonth: 'December'
+            })
+        } else {
+            this.setState({
+                currentMonth: this.state.month[this.state.month.indexOf(this.state.currentMonth) - 1]
+            })
         }
     }
-    handlerIncreasePress = (e) => {
-            console.log ('work')
-        
-        if (e.keyCode === 38) {
-            console.log ('work')
+    componentDidUpdate() {
+        if (this.props.startMonth) {
+            this.props.startMonth(this.state.currentMonth)
+        } else {
+            this.props.endMonth(this.state.currentMonth)
         }
     }
     render() {
         return (
-            <div>
+            <div className="months">
                 <div className="inputTime">
                     <span>
-                        {this.state.hour}:{this.state.minutes} {this.state.format}
+                        {this.state.currentMonth}
                     </span>
                     <div className="wrapForIncAndDec">
-                        <FontAwesome onClick={this.increase} onMouseDown={this.props.increase} onKeyPress={this.handlerIncreasePress}
+                        <FontAwesome onClick={this.increase}
                             name="increase"
                             className='fa fa-sort-asc'
                             style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}

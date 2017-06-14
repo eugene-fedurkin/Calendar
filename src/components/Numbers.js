@@ -59,7 +59,7 @@ class Numbers extends Component {
         let row = [];
         for (let i = 1; i <= allDayinCurrentMonth.length; i++) {
             row.push(
-            <ListOfDays key={i} onClick={this.toggleModal} currentMonth={this.props.currentMonth} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}>
+            <ListOfDays key={i} storeEvents={this.props.storeEvents} putStoreEvent={this.props.putStoreEvent} currentMonth={this.props.currentMonth} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}>
             </ListOfDays>
             );
             if (i > 1 && i % 7 === 0) {

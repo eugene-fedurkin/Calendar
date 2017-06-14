@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Input from './Input'
 class EndEventNumber extends Component {
     componentDidMount() {
         document.getElementById('endEventNumber').value = this.props.number
@@ -16,11 +17,15 @@ class EndEventNumber extends Component {
             e.target.style.color = 'white'
         }
     }
+    getNumber = (e) => {
+        this.props.endNumber(e.target.value);
+    }
     render() {
         return(
             <div className="dub">
                 <div className="secondaryInput  dateInformation noteForTime">End event(number): </div>
-                <input onBlur={this.handlerNumber} id="endEventNumber" className="secondaryInput dateInformation" type="text" placeholder="Day of the month" /> 
+                <input onChange={this.getNumber} onBlur={this.handlerNumber} id="endEventNumber" className="secondaryInput dateInformation" type="text" placeholder="Day of the month" />
+                <Input endMonth={this.props.endMonth} />
             </div>
         )
     }
