@@ -24,72 +24,51 @@ class Event extends Component {
     }
     changeNameEvent = (e) => {
         this.nameEvent = e.target.value;
-        console.log(this.nameEvent)
     }
     changeStartNumber = (value) => {
         this.startNumber = value;
-        console.log(this.startNumber)
     }
-
     changeStartMonth = (value) => {
         this.startMonth = value;
-        console.log(this.startMonth)
     }
     changeEndNumber = (value) => {
         this.endNumber = value;
-        console.log(this.endNumber)
     }
     changeEndMonth = (value) => {
         this.endMonth = value;
-        console.log(this.endMonth)
     }
-    
-
     changeStartHour = (value) => {
         this.startHour = value;
-        console.log(this.startHour)
-        
     }
     changeStartMinutes = (value) => {
         this.startMinutes = value;
-        console.log(this.startMinutes);
     }
     changeStartFormat = (value) => {
         this.startFormat = value;
-        console.log(this.startFormat)
     }
     changeEndHour = (value) => {
         this.endHour = value;
-        console.log(this.endHour)
     }
     changeEndMinutes = (value) => {
         this.endMinutes = value;
-        console.log(this.endMinutes)
     }
     changeEndFormat = (value) => {
         this.endFormat = value;
-        console.log(this.endFormat)
     }
     changeEndFormat = (value) => {
         this.endFormat = value;
-        console.log(this.endFormat)
     }
     changeLocation = (e) => {
         this.location = e.target.value;
-        console.log(this.location)
-        
     }
     changeDiscription = (e) => {
         this.discription = e.target.value;
-        console.log(this.discription)
-        
     }
     unfocusedDay = (e) => {
         const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
         let index = days.indexOf(e.target.value);
         if (index === -1) {
             document.getElementById('errorStartTime').innerText = 'Invalid value';
-            console.log('here')
         }
     }
     handler = () => {
@@ -139,8 +118,8 @@ class Event extends Component {
                     <input onChange={this.changeNameEvent} className="mainInput" id="nameEvent" placeholder="Name event" />
                 </div>
                 <div className="containerSecondaryInput">
-                    <StartEventNumber startNumber={this.changeStartNumber} startMonth={this.changeStartMonth} currentMonth={this.props.currentMonth} number={this.props.number} />
-                    <EndEventNumber endNumber={this.changeEndNumber} endMonth={this.changeEndMonth} currentMonth={this.props.currentMonth} number={this.props.number} />
+                    <StartEventNumber startNumber={this.changeStartNumber} startMonth={this.changeStartMonth} currentMonth={this.props.currentMonth} number={this.props.number} month={this.props.month} />
+                    <EndEventNumber endNumber={this.changeEndNumber} endMonth={this.changeEndMonth} currentMonth={this.props.currentMonth} number={this.props.number} month={this.props.month} />
                 </div>
                 <div className="containerSecondaryInput">
                     <div>

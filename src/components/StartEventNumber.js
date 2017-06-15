@@ -28,7 +28,7 @@ class StartEventNumber extends Component {
                     Start event(number):
                 </div>
                 <input onChange={this.getNumber} onBlur={this.handlerNumber} id="startEventNumber" className="secondaryInput dateInformation" type="text" placeholder="Day of the month" />
-                <Input startMonth={this.props.startMonth} />
+                <Input month={this.props.month} startMonth={this.props.startMonth} />
             </div>
         )
     }

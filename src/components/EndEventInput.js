@@ -35,8 +35,8 @@ class EndEventInput extends Component {
                 <div className="secondaryInput  dateInformation noteForTime">End event(time):</div>
                 <input onChange={this.getHour} onBlur={this.handlerHour} id="hourEnd"className="secondaryInput dateInformation" type="text" placeholder="Hour"/> : <input onChange={this.getMinutes} onBlur={this.handlerMinutes} id="minutesEnd" className="secondaryInput  dateInformation" type="text" placeholder="minutes"/>
                 <select onChange={this.getFormat} className="secondaryInput format dateInformation" name="format">
-                    <option value="a.m">a.m</option>
-                    <option value="p.m">p.m</option>
+                    <option value="a.m">am</option>
+                    <option value="p.m">pm</option>
                 </select>
             </div>
         )

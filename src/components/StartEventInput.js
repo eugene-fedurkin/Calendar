@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class StartEventInput extends Component {
     handlerHour = (e) => {
         let type = parseInt(+e.target.value)
-        if (type < 13 && type > 0) {
+        if (type < 13 && type > 0) { // ----before 12 ???
             e.target.style.background = '#81C784';
             //#81C784
         } else {
@@ -37,8 +37,8 @@ class StartEventInput extends Component {
                 </div>
                 <input onChange={this.getHour} onBlur={this.handlerHour} id="hour" className="secondaryInput  dateInformation" type="text" placeholder="Hour" /> : <input onChange={this.getMinutes} onBlur={this.handlerMinutes} id="minutes" className="secondaryInput  dateInformation" type="text" placeholder="minutes" />
                 <select onChange={this.getFormat} className="secondaryInput format dateInformation" name="format">
-                    <option value="a.m">a.m</option>
-                    <option value="p.m">p.m</option>
+                    <option value="a.m">am</option>
+                    <option value="p.m">pm</option>
                 </select>
             </div>
         )

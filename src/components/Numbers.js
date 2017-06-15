@@ -46,7 +46,6 @@ class Numbers extends Component {
     }
     componentWillReceiveProps(newProps) {
         this.date =  new Date(new Date().getFullYear(), newProps.currentMonth, 1);
-        console.log('#################componentWillMount#########################')
         console.log(this.props.currentMonth)
         this.setState(currentMonth => ({
             countDaysInMonth: new Date(new Date().getFullYear(), newProps.currentMonth + 1, 0).getDate(),

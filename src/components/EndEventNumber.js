@@ -25,7 +25,7 @@ class EndEventNumber extends Component {
             <div className="dub">
                 <div className="secondaryInput  dateInformation noteForTime">End event(number): </div>
                 <input onChange={this.getNumber} onBlur={this.handlerNumber} id="endEventNumber" className="secondaryInput dateInformation" type="text" placeholder="Day of the month" />
-                <Input endMonth={this.props.endMonth} />
+                <Input endMonth={this.props.endMonth} month={this.props.month} />
             </div>
         )
     }

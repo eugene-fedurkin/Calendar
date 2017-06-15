@@ -6,7 +6,7 @@ class Input extends Component {
         super(props)
         this.state = {
             month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            currentMonth: 'January'
+            currentMonth: this.props.month
         }
     }
     increase = () => {

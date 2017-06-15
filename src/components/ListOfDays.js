@@ -67,8 +67,8 @@ class ListOfDays extends Component {
         for (let event of events) {
             if (event['startNumber'] == this.props.number && event['startMonth'] == this.props.currentNameMonth) {
                 result.push([event['nameEvent']]);
-                this.hourStart = event['startHour'];
-                this.minutesStart = event['startMinutes']
+                /*this.hourStart = event['startHour'];// -- mb dont request
+                this.minutesStart = event['startMinutes']*/
             }
         } //---need life cycle
         return(
@@ -80,7 +80,7 @@ class ListOfDays extends Component {
                     </div>
                 )}
                 <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
-                        <Day hour={this.hourStart} minutes={this.minutesStart} storeEvents={this.props.storeEvents} putStoreEvent={this.props.putStoreEvent} number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal}/>
+                        <Day storeEvents={this.props.storeEvents} putStoreEvent={this.props.putStoreEvent} number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal}/>
                     </Modal>
             </div>
         )
