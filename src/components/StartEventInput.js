@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 
 class StartEventInput extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hour: props.hour,
+            minutes: props.minutes
+        }
+    }
     handlerHour = (e) => {
-        let type = parseInt(+e.target.value)
-        if (type < 13 && type > 0) { // ----before 12 ???
+        let type = parseInt(+e.target.value);
+        if (type < 12 && type >= 0 && (+e.target.value ^ 0) === +e.target.value) { // ----before 12 ???
             e.target.style.background = '#81C784';
             //#81C784
         } else {
             e.target.style.background = '#E53935';
-            e.target.style.color = 'white'
+            e.target.style.color = 'white';
         }
     }
     handlerMinutes = (e) => {
-        let type = parseInt(+e.target.value)
+        let type = parseInt(+e.target.value);
         if (type < 60 && type >= '00' && e.target.value.length <= 2 && e.target.value.length > 0) {
             e.target.style.background = '#81C784';
         } else {
@@ -21,10 +28,12 @@ class StartEventInput extends Component {
         }
     }
     getHour = (e) => {
+        this.setState({ hour: e.target.value })
         this.props.startHour(e.target.value);
     }
     getMinutes = (e) => {
-        this.props.startMinutes(e.target.value)
+        this.setState({ minutes: e.target.value })
+        this.props.startMinutes(e.target.value);
     }
     getFormat = (e) => {
         this.props.startFormat(e.target.value);
@@ -35,10 +44,10 @@ class StartEventInput extends Component {
                 <div className="secondaryInput  dateInformation noteForTime">
                     Start event(time):
                 </div>
-                <input onChange={this.getHour} onBlur={this.handlerHour} id="hour" className="secondaryInput  dateInformation" type="text" placeholder="Hour" /> : <input onChange={this.getMinutes} onBlur={this.handlerMinutes} id="minutes" className="secondaryInput  dateInformation" type="text" placeholder="minutes" />
+                <input onChange={this.getHour} onBlur={this.handlerHour} id="hour" className="secondaryInput  dateInformation" type="text" placeholder="Hour" value={this.state.hour} /> : <input onChange={this.getMinutes} onBlur={this.handlerMinutes} id="minutes" className="secondaryInput  dateInformation" type="text" placeholder="minutes" value={this.state.minutes} />
                 <select onChange={this.getFormat} className="secondaryInput format dateInformation" name="format">
-                    <option value="a.m">am</option>
-                    <option value="p.m">pm</option>
+                    <option value="am">am</option>
+                    <option value="pm">pm</option>
                 </select>
             </div>
         )

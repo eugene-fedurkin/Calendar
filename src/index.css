@@ -3,3 +3,326 @@ body {
   padding: 0;
   font-family: 'Shadows Into Light', cursive;
 }
+
+/*  FROM APP.CSS  */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.swapperMonths {
+  text-align: center;
+  background: #9b59b6;
+  height: 37px;
+  font-size: 27px;
+  color: white
+}
+.prevDate {
+  float: left;
+  font-size: 18px;
+  margin: 8px 0 0 15px;
+  cursor: pointer;
+}
+.nextDate {
+  float: right;
+  font-size: 18px;
+  margin: 8px 15px 0 0;
+  cursor: pointer;
+}
+.prevDate span {
+  margin-right: 5px
+}
+.nextDate span {
+  margin-left: 5px
+}
+.currentDate {
+  display: inline-block;
+}
+#calendar {
+  width: 90%;
+  margin: auto;
+}
+#header {
+  height: 50px;
+  font-size: 27px;
+  color: white;
+  border-bottom: 2px solid white
+}
+#dates {
+  height: 120px;
+  background: #9E9E9E;  
+  border: 1px solid white;
+  margin: -1px;
+  color: white;
+  width: 14.285%;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+#dates.active {
+  background: #009688;
+}
+.prevDates, .nextDates {
+  background: #9E9E9E!important;
+}
+
+
+.days {
+  background: #9b59b6;
+  padding: 8px 0px;
+  margin: -1px;
+  width: 14.285%;
+  height: 100px;
+  color: white;
+  border: 1px solid white;
+  text-align: center;
+  display: inline-block;
+}
+.numbers {
+  text-align: left;
+  margin-left: 10px;
+}
+.fade-enter {
+  opacity: 0
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: 0.5s ease-in-out all;
+}
+.headerOfModal {
+  display: flex;
+}
+.time {
+  display: inline-block;
+  width: 10%;
+  border: 1px solid black;
+  margin-right: -1px;
+  height: 50px;
+  line-height: 2;
+  text-align: center;
+  overflow: hidden;
+  font-size: 21px;
+  background: #EEEEEE
+  
+}
+.wrapper {
+  text-align: right;
+  font-size: 24px;
+}
+.container {
+  border: 1px solid black;
+  width: auto;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: -11px;
+  padding: 0px 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #EEEEEE
+  
+}
+.fieldForEvent {
+  display: inline-block;
+  width: 90%;
+  border: 1px solid black;
+  height: 50px;
+  cursor: pointer;
+  background: #EEEEEE
+}
+.title {
+  text-align: center;
+  font-size: 21px;
+  cursor: inherit;
+}
+.fieldForEvent:hover {
+  background: #9E9E9E
+}
+.title:hover {
+  background: #EEEEEE
+}
+.button {
+  background: #795548;
+  color: white;
+  outline: none;
+  padding: 13px 36px;
+  border: none;
+  font-size: 16px;
+}
+.button:hover {
+  cursor: pointer;
+  background: #4E342E;
+}
+.containerMainInput, .containerForButton {
+  text-align: center;
+  margin-bottom: 17px;
+}
+.mainInput {
+  padding: 15px 138px 15px 10px;
+  font-size: 23px;
+  outline: none;
+}
+.containerSecondaryInput {
+  width: 50%;
+  display: inline-block
+}
+.secondaryInput {
+  display: block;
+  padding: 9px 12px 13px 12px;
+  height: 32px;
+  font-size: 16px;
+  width: 33%;
+  margin: 17px auto;
+  outline: none;
+}
+.discriptionEvent {
+  width: 570px;
+  height: 150px;
+  font-size: 14px;
+}
+.locationClass {
+  width: 417px;
+  display: block;
+  padding: 12px;
+  font-size: 16px;
+  margin: 17px auto;
+  outline: none;
+}
+.middleContainer {
+  text-align: center;
+}
+#errorStartTime {
+  
+}
+.inputTime {
+  padding: 12px;
+  font-size: 16px;
+  width: 13%;
+  min-width: 82px;
+  margin: 17px auto;
+  border: 1px solid black;
+  justify-content: space-between;
+  display: flex;
+}
+.wrapForIncAndDec {
+  display: flex;
+  flex-direction: column;
+}
+.dateInformation {
+  width: 10%;
+  display: inline-block
+}
+.format {
+  padding: 0px;
+  height: 56px;
+  min-width: 55px;
+}
+.noteForTime {
+  padding: 0;
+  margin: 0;
+  width: 148px;
+  font-size: 18px;
+}
+.dub {
+  margin: -17px
+}
+.dayOfTheWeek {
+  min-width: 87px;
+}
+input::placeholder {
+  color: #795548
+}
+.events {
+  position: absolute;
+  background: rebeccapurple;
+  width: 100%;
+}
+.months {
+  display: inline-block;
+}
+/*------------------------------------TOOLTIP-------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------------------------*/
+.container {
+	text-align: center;
+}
+.animation-container {
+	display: inline-block;
+}
+.item {
+	background-color: yellow;
+	width: 400px;
+	text-align: center;
+	padding: 10px 5px;
+	margin-top: 10px;
+	border-radius: 8px;
+	font-weight: 600;
+	color: black;
+}
+.example-enter {
+    opacity: 0;
+    transform:   translate(-250px,0);
+    transform: translate3d(-250px,0,0);
+}
+.example-enter.example-enter-active {
+	opacity: 1;
+	transition: opacity 1s ease;
+	transform:   translate(110px,0);
+	transform: translate3d(110px,0,0);
+	transition-property: transform, opacity;
+	transition-duration: 300ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave {
+	opacity: 1;
+	transform:   translate(0,0,0);
+	transform: translate3d(0,0,0);
+  transition-property: transform, opacity;
+	transition-duration: 1300ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave.example-leave-active {
+	opacity: 0;
+	transform:   translate(250px,0);
+	transform: translate3d(250px,0,0);
+}

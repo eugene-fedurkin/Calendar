@@ -1,64 +1,44 @@
 import React, { Component } from 'react';
-import DayOfTheWeek from './DayOfTheWeek';
-import Numbers from './Numbers';
-import CurrentDate from './CurrentDate';
-
-import { BrowserRouter, Route, } from 'react-router-dom';
-
+import Days from './Days';
+import Month from './Month';
 
 class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentDate: new Date().getMonth(),
+            currentMonth: new Date().getMonth(),
             storeEvents: [] //-- mb not in state
         };
-        this.month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        this.month = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
     }
 
     prevClick = () => {
-        if (this.state.currentDate) {
-            this.setState(currentMonth => ({
-                currentDate: currentMonth.currentDate - 1
-            }));
+        if (this.state.currentMonth) {
+            this.setState({ currentMonth: this.state.currentMonth - 1 });
         }
     }
     nextClick = () => {
-        console.log('work')
-        if (this.state.currentDate < 11) {
-            this.setState(currentMonth => ({
-                currentDate: currentMonth.currentDate + 1
-            }));
+        if (this.state.currentMonth < 11) {
+            this.setState({ currentMonth: this.state.currentMonth + 1 });
         }
     }
 
-    putStoreEvents = (nameEvent, startNumber, startMonth, endNumber, endMonth, startHour, startMinutes, startFormat, endHour, endMinutes, endFormat, location, discription) => {
+    addEvent = event => {
         let newState = this.state.storeEvents.slice();
-        newState.push({
-            'nameEvent': nameEvent,
-            'startNumber': startNumber,
-            'startMonth': startMonth,
-            'endNumber': endNumber,
-            'endMonth': endMonth,
-            'startHour': startHour,
-            'startMinutes': startMinutes,
-            'startFormat': startFormat,
-            'endHour': endHour,
-            'endMinutes': endMinutes,
-            'endFormat': endFormat,
-            'location': location,
-            'discription': discription
-        });
+        newState.push(event);
         this.setState({storeEvents: newState});
-        console.log('this.state.storeEvent', this.state.storeEvents.slice());
     }
 
     render() {
         return (
             <div id="calendar">
-                <CurrentDate prevClick={this.prevClick} nextClick={this.nextClick} currentMonth={this.state.currentDate} listMonths={this.month} />
-                <DayOfTheWeek />
-                <Numbers storeEvents={this.state.storeEvents} putStoreEvent={this.putStoreEvents} currentMonth={this.state.currentDate} currentNameMonth={this.month[this.state.currentDate]} prevNameMonth={this.month[this.state.currentDate - 1]} nextNameMonth={this.month[this.state.currentDate + 1]} />
+                <Month onPrev={this.prevClick} onNext={this.nextClick}
+                    currentMonth={this.state.currentMonth} listMonths={this.month} />
+                <Days storeEvents={this.state.storeEvents} addEvent={this.addEvent}
+                    currentMonth={this.state.currentMonth} currentNameMonth={this.month[this.state.currentMonth]}
+                    prevNameMonth={this.month[this.state.currentMonth - 1]}
+                    nextNameMonth={this.month[this.state.currentMonth + 1]} />
             </div>
         );
     }

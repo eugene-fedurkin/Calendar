@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class EndEventInput extends Component {
     handlerHour = (e) => {
         let type = parseInt(+e.target.value)
-        if (type < 13 && type > 0) {
+        if (type < 12 && type > 0 && (+e.target.value ^ 0) === +e.target.value) {
             document.getElementById('hourEnd').style.background = '#81C784';
             //#81C784
         } else {
@@ -13,7 +13,7 @@ class EndEventInput extends Component {
     }
     handlerMinutes = (e) => {
         let type = parseInt(+e.target.value)
-        if (type < 61 && type >= '00' && e.target.value.length <= 2 && e.target.value.length > 0) {
+        if (type < 60 && type >= '00' && e.target.value.length <= 2 && e.target.value.length > 0) {
             document.getElementById('minutesEnd').style.background = '#81C784';
         } else {
             document.getElementById('minutesEnd').style.background = '#E53935';

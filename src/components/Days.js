@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
+import DayOfTheWeek from './DayOfTheWeek';
 import ListOfDays from './ListOfDays';
 
-import { Link } from 'react-router-dom';
-class Numbers extends Component {
+class Days extends Component {
     constructor(props) {
         super(props);
         this.arrRestDaysInLastMonth = [];
@@ -31,7 +32,6 @@ class Numbers extends Component {
         }
     }
     restNumberNextMonth() {
-        console.log('########',(this.arrDaysInMonth.length + this.arrRestDaysInLastMonth.length))
         if ((this.arrDaysInMonth.length + this.arrRestDaysInLastMonth.length) % 7 !== 0) {
             let countRestDay = 7 - (this.arrDaysInMonth.length + this.arrRestDaysInLastMonth.length) % 7;
             for (let i = 1; i <= countRestDay; i++) {
@@ -46,19 +46,23 @@ class Numbers extends Component {
     }
     componentWillReceiveProps(newProps) {
         this.date =  new Date(new Date().getFullYear(), newProps.currentMonth, 1);
-        console.log(this.props.currentMonth)
         this.setState(currentMonth => ({
             countDaysInMonth: new Date(new Date().getFullYear(), newProps.currentMonth + 1, 0).getDate(),
             indexFirstDayInCurrentMonth: this.date.getDay()
         }));
     }
     getRows() {
-        const allDayinCurrentMonth = this.arrRestDaysInLastMonth.concat(this.arrDaysInMonth).concat(this.arrFirstDaysInNextMonth);
+        const allDayinCurrentMonth = this.arrRestDaysInLastMonth
+            .concat(this.arrDaysInMonth)
+            .concat(this.arrFirstDaysInNextMonth);
+
         let rows = [];
         let row = [];
         for (let i = 1; i <= allDayinCurrentMonth.length; i++) {
+            let currentMonthDay = i > this.arrRestDaysInLastMonth.length && i <= (this.arrRestDaysInLastMonth.length + this.arrDaysInMonth.length);
             row.push(
-            <ListOfDays key={i} storeEvents={this.props.storeEvents} putStoreEvent={this.props.putStoreEvent} currentMonth={this.props.currentMonth} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}>
+            <ListOfDays key={i} storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} currentMonth={this.props.currentMonth} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}
+                active={currentMonthDay}>
             </ListOfDays>
             );
             if (i > 1 && i % 7 === 0) {
@@ -69,7 +73,6 @@ class Numbers extends Component {
         return rows;
     }
     render() {
-        console.log(this.props.currentMonth)
         this.changeMonth();
         this.daysInMonth();
         this.firstNumberOnCalendar();
@@ -77,10 +80,11 @@ class Numbers extends Component {
         let rows = this.getRows();
         return (
             <div>
+                <DayOfTheWeek />
                 {rows}
             </div>
         )
     }
 }
 
-export default Numbers; 
+export default Days; 

@@ -35,33 +35,51 @@ class ListOfDays extends Component {
         this.dayOfModal = e.currentTarget.children[0].innerText;
         this.toggleModal();
     }
-    /*storeEvents = (value, number) => {
-        console.log('value', value, 'number', number)
-        let CopyStore = this.state.store.slice();
-        console.log('CopyStore', CopyStore)
-        CopyStore = CopyStore.concat(value);
-        console.log('CopyStore', CopyStore);
-        this.setState({ store: CopyStore }, console.log('this.state.store', this.state.store))
+    // storeEvents = (value, number) => {
+    //     console.log('value', value, 'number', number)
+    //     let CopyStore = this.state.store.slice();
+    //     console.log('CopyStore', CopyStore)
+    //     CopyStore = CopyStore.concat(value);
+    //     console.log('CopyStore', CopyStore);
+    //     this.setState({ store: CopyStore }, console.log('this.state.store', this.state.store))
         
-        if (number == this.props.number) {
-            let events = this.state.store.slice();
-            this.event = events.map((event, len) =>
-                <div className="events" key={len}>
-                    {event}
-                </div>
-            )
-        }
-        console.log('this.event', this.event)
-    }*/
-    /*storeEvents = (nameEvent) => {
+    //     if (number == this.props.number) {
+    //         let events = this.state.store.slice();
+    //         this.event = events.map((event, len) =>
+    //             <div className="events" key={len}>
+    //                 {event}
+    //             </div>
+    //         )
+    //     }
+    //     console.log('this.event', this.event)
+    // }
+    storeEvents = (nameEvent) => {
         console.log('nameEvent', nameEvent);
         let newState = this.state.store.slice();
         newState.push(nameEvent);
         this.setState({store: newState});
         console.log('this.state.store', this.state.store);
 
-    }*/
+    }
+    componentDidMount() { // --- 35 times
+        console.log('component')
+        const firstChild = document.getElementsByClassName('indent')[0].children;
+        const lastChild = document.getElementsByClassName('indent')[0].parentElement.lastChild.children
+        for (let i = 0; i < firstChild.length; i++) {
+            if (+firstChild[i].innerText > 20) {
+                firstChild[i].classList.add('prevDates');
+            } else {
+                firstChild[i].classList.remove('prevDates');
+            }
+            if (+lastChild[i].innerText < 8) {
+                lastChild[i].classList.add('prevDates');
+            } else {
+                lastChild[i].classList.remove('prevDates');
+            }
+        }
+    }
     render() {
+        console.log('render')
         let events = this.props.storeEvents.slice();
         let result = [];
         for (let event of events) {
@@ -72,7 +90,7 @@ class ListOfDays extends Component {
             }
         } //---need life cycle
         return(
-            <div onClick={this._handlers} id="dates" className="datesClass">
+            <div onClick={this._handlers} id="dates" className={'datesClass' + (this.props.active ? ' active' : '') }>
                 <div className="numbers">{this.props.number}</div>
                 {result.map((event, index) => 
                     <div key={index} className ="events">
@@ -80,7 +98,7 @@ class ListOfDays extends Component {
                     </div>
                 )}
                 <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
-                        <Day storeEvents={this.props.storeEvents} putStoreEvent={this.props.putStoreEvent} number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal}/>
+                        <Day storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal}/>
                     </Modal>
             </div>
         )

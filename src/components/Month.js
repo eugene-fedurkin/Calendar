@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-class CurrentDate extends Component {
+class Month extends Component {
     render() {
         return (
             <div className="swapperMonths">
-                <div onClick={this.props.prevClick} className="prevDate">
+                <div onClick={this.props.onPrev} className="prevDate">
                     <FontAwesome
                     name="arrow-left"
                     className='fa fa-arrow-left'
@@ -16,7 +16,7 @@ class CurrentDate extends Component {
                 <div className="currentDate">
                     {this.props.listMonths[this.props.currentMonth]}
                 </div>
-                <div onClick={this.props.nextClick} className="nextDate">
+                <div onClick={this.props.onNext} className="nextDate">
                     {this.props.listMonths[this.props.currentMonth + 1]}
                     <FontAwesome
                     name="arrow-right"
@@ -29,4 +29,4 @@ class CurrentDate extends Component {
     }
 }
 
-export default CurrentDate;
+export default Month;

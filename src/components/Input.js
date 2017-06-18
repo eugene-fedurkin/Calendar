@@ -18,8 +18,9 @@ class Input extends Component {
             this.setState({
                 currentMonth: this.state.month[this.state.month.indexOf(this.state.currentMonth) + 1]
             })
+            
         }
-        //this.props.startMonth(this.state.currentMonth)
+        this.triggerUpdate();
     }
     decrease = () => {
         if (this.state.currentMonth === 'January') {
@@ -31,14 +32,17 @@ class Input extends Component {
                 currentMonth: this.state.month[this.state.month.indexOf(this.state.currentMonth) - 1]
             })
         }
+        this.triggerUpdate();
     }
-    componentDidUpdate() {
+
+    triggerUpdate() {
         if (this.props.startMonth) {
             this.props.startMonth(this.state.currentMonth)
         } else {
             this.props.endMonth(this.state.currentMonth)
         }
     }
+
     render() {
         return (
             <div className="months">

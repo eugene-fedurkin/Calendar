@@ -28,17 +28,20 @@ class Day extends Component {
         /*if (this.props.hour && this.props.minutes) {
             this.time.push(`${this.props.hour} : ${this.props.minutes}`)
         }*/
+        console.log('this.props.storeEvents', this.props.storeEvents)
         for (let event of this.props.storeEvents) {
             if (event['startNumber'] == this.props.number && event['startMonth'] == this.props.month) {
                 this.scheduleScore.push({
-                    time: `${event['startHour']} : ${event['startMinutes']}${event['startFormat']}`,
+                    time: `${event['startHour']}:${event['startMinutes']} ${event['startFormat']}`,
                     event: `Name event: ${event['nameEvent']}. Location: ${event['location']}. Discription: ${event['discription']}`
-                })
+                });
             }
         }
         this.scheduleScore.sort((a, b) => {
-            return Date.parse('01/01/2017' + a['time']) - Date.parse('01/01/2017' + b['time'])
-        })
+            console.log('time', a['time'], b['time'])
+            return new Date('1970/01/01 ' + a['time']) - new Date('1970/01/01 ' + b['time']);
+        });
+        console.log('this.scheduleScore', this.scheduleScore)
         for (let i = 0; i < this.scheduleScore.length; i++) {
             this.bodySchedule.push(
                 <div key={i} className="headerOfModal">
@@ -65,7 +68,6 @@ class Day extends Component {
                     ) */
 // ----pass store, TODO: get necessary events
     render() {
-        console.log('props', this.events)
         return (
             <div>
                 <div className="wrapper">
@@ -84,7 +86,7 @@ class Day extends Component {
                 }
                     <input onClick={this.toggleModal} type="button" value="Create event" />
                     <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Inpunts">
-                        <Event storeEvents={this.props.storeEvents} putStoreEvent={this.props.putStoreEvent} currentMonth={this.props.currentMonth} number={this.props.number} month={this.props.month} />
+                        <Event storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} currentMonth={this.props.currentMonth} number={this.props.number} month={this.props.month} />
                     </Modal>
                     
             </div>
