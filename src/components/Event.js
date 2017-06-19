@@ -16,12 +16,13 @@ class Event extends Component {
             endMonth: props.month,
             startHour: new Date().getHours(),
             startMinutes: '00',
-            startFormat: null,
+            startFormat: new Date().getHours() > 12 ? 'pm' : 'am',
             endHour: null,
             endMinutes: null,
             endFormat: null,
             location: null,
-            discription: null
+            discription: null,
+            rest: this.props.rest // request?
         };
     }
 
@@ -82,6 +83,7 @@ class Event extends Component {
     }
 
     create = () => {
+        console.log('create')
         this.props.addEvent(this.state);
     }
 

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Day from './Day';
 
 import Modal from 'react-modal';
+import FontAwesome from 'react-fontawesome';
+
 
 class ListOfDays extends Component {
     constructor(props) {
@@ -13,7 +15,7 @@ class ListOfDays extends Component {
         this.minutesStart = null;
         this.state = {
             isActive: false,
-            store: []
+            store: [] // ???
         }
     }
         componentWillMount() {
@@ -25,35 +27,18 @@ class ListOfDays extends Component {
         });
     }
     _handlers = (e) => {
-        if (e.currentTarget.textContent > 22 && e.target.parentElement === e.target.parentElement.parentElement.firstChild) {
+        if (+e.currentTarget.firstChild.innerText > 22 && e.target.parentElement === e.target.parentElement.parentElement.children[1]) {
             this.monthOfModal = this.props.prevNameMonth;
-        } else if (e.currentTarget.textContent < 7 && e.target.parentElement === e.target.parentElement.parentElement.lastChild) {
+        } else if (+e.currentTarget.firstChild.innerText < 7 && e.target.parentElement === e.target.parentElement.parentElement.lastChild) {
             this.monthOfModal = this.props.nextNameMonth
         } else {
             this.monthOfModal = this.props.currentNameMonth
         }
         this.dayOfModal = e.currentTarget.children[0].innerText;
+        console.log('this.props.prevNameMonth', this.props.prevNameMonth)
         this.toggleModal();
     }
-    // storeEvents = (value, number) => {
-    //     console.log('value', value, 'number', number)
-    //     let CopyStore = this.state.store.slice();
-    //     console.log('CopyStore', CopyStore)
-    //     CopyStore = CopyStore.concat(value);
-    //     console.log('CopyStore', CopyStore);
-    //     this.setState({ store: CopyStore }, console.log('this.state.store', this.state.store))
-        
-    //     if (number == this.props.number) {
-    //         let events = this.state.store.slice();
-    //         this.event = events.map((event, len) =>
-    //             <div className="events" key={len}>
-    //                 {event}
-    //             </div>
-    //         )
-    //     }
-    //     console.log('this.event', this.event)
-    // }
-    storeEvents = (nameEvent) => {
+    storeEvents = (nameEvent) => { // ???
         console.log('nameEvent', nameEvent);
         let newState = this.state.store.slice();
         newState.push(nameEvent);
@@ -61,44 +46,78 @@ class ListOfDays extends Component {
         console.log('this.state.store', this.state.store);
 
     }
-    componentDidMount() { // --- 35 times
-        console.log('component')
-        const firstChild = document.getElementsByClassName('indent')[0].children;
-        const lastChild = document.getElementsByClassName('indent')[0].parentElement.lastChild.children
-        for (let i = 0; i < firstChild.length; i++) {
-            if (+firstChild[i].innerText > 20) {
-                firstChild[i].classList.add('prevDates');
-            } else {
-                firstChild[i].classList.remove('prevDates');
-            }
-            if (+lastChild[i].innerText < 8) {
-                lastChild[i].classList.add('prevDates');
-            } else {
-                lastChild[i].classList.remove('prevDates');
-            }
-        }
-    }
+
     render() {
-        console.log('render')
-        let events = this.props.storeEvents.slice();
-        let result = [];
-        for (let event of events) {
-            if (event['startNumber'] == this.props.number && event['startMonth'] == this.props.currentNameMonth) {
-                result.push([event['nameEvent']]);
-                /*this.hourStart = event['startHour'];// -- mb dont request
-                this.minutesStart = event['startMinutes']*/
-            }
-        } //---need life cycle
-        return(
-            <div onClick={this._handlers} id="dates" className={'datesClass' + (this.props.active ? ' active' : '') }>
-                <div className="numbers">{this.props.number}</div>
-                {result.map((event, index) => 
+        const props = {
+            number: this.props.number,
+            month: this.props.currentNameMonth,
+            rest: this.props.rest, // request?
+            monthNumber: this.monthOfModal
+        }
+        let events = this.props.getRequestEvent(props);
+        let event;
+        if (events.lastEvent && this.props.rest === 'prevDays') {
+            event = events.lastEvent.map((event, index) => 
+                        <div key={index} className ="events">
+                            {event.nameEvent}
+                        </div>
+                    )
+        } else if (events.nextEvent && events.nextEvent && this.props.rest === 'nextDays') {
+            event = events.nextEvent.map((event, index) => 
+                        <div key={index} className ="events">
+                            {event.nameEvent}
+                        </div>
+                    )
+        } else if (events.event && this.props.rest === 'days') {
+             event = events.event.map((event, index) => 
+                        <div key={index} className ="events">
+                            {event.nameEvent}
+                        </div>
+                    )
+        }
+
+
+        
+       /* if (this.props.rest === 'prevDays') {
+            event = events.resultLast.map((event, index) => 
                     <div key={index} className ="events">
                         {event}
                     </div>
-                )}
-                <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
-                        <Day storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal}/>
+                )
+        }*/
+
+
+        // if (this.props.rest === 'prevDays') {
+        //     event = events.resultLast.map((event, index) => 
+        //             <div key={index} className ="events">
+        //                 {event}
+        //             </div>
+        //         )
+        // } if (this.props.rest === 'days') {
+        //     event = events.resultActive.map((event, index) => 
+        //             <div key={index} className ="events">
+        //                 {event}
+        //             </div>
+        //         )
+        // } if (this.props.rest === 'nextDays') {
+        //     event = events.resultNext.map((event, index) => 
+        //             <div key={index} className ="events">
+        //                 {event}
+        //             </div>
+        //         )
+        // }
+
+        return(
+            <div onClick={this._handlers} id="dates" className={'datesClass' + (this.props.active ? ' active' : '') }>
+                <div className="numbers">{this.props.number}</div>
+                {event}
+                <Modal className="modalDay" isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Modal">
+                  
+                <FontAwesome onClick={this.toggleModal}
+                    name="times"
+                    className="close"
+                    />
+                        <Day storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} number={this.dayOfModal} currentMonth={this.props.currentMonth} month={this.monthOfModal} rest={this.props.rest} />
                     </Modal>
             </div>
         )

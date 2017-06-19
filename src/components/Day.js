@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import FontAwesome from 'react-fontawesome';
+
 import Event from './Event'
 
 import Modal from 'react-modal';
@@ -25,35 +27,34 @@ class Day extends Component {
         });
     }
     componentWillMount() {
-        /*if (this.props.hour && this.props.minutes) {
-            this.time.push(`${this.props.hour} : ${this.props.minutes}`)
-        }*/
-        console.log('this.props.storeEvents', this.props.storeEvents)
-        for (let event of this.props.storeEvents) {
-            if (event['startNumber'] == this.props.number && event['startMonth'] == this.props.month) {
-                this.scheduleScore.push({
-                    time: `${event['startHour']}:${event['startMinutes']} ${event['startFormat']}`,
-                    event: `Name event: ${event['nameEvent']}. Location: ${event['location']}. Discription: ${event['discription']}`
-                });
-            }
-        }
-        this.scheduleScore.sort((a, b) => {
-            console.log('time', a['time'], b['time'])
-            return new Date('1970/01/01 ' + a['time']) - new Date('1970/01/01 ' + b['time']);
-        });
-        console.log('this.scheduleScore', this.scheduleScore)
-        for (let i = 0; i < this.scheduleScore.length; i++) {
-            this.bodySchedule.push(
-                <div key={i} className="headerOfModal">
-                    <div className="time">
-                        <span>
-                            {this.scheduleScore[i]['time']}
-                        </span>
-                    </div>
-                    <div className="fieldForEvent">{this.scheduleScore[i]['event']}</div>
-                </div>
-            )
-        }
+        
+
+
+        // for (let event of this.props.storeEvents) {
+        //     if (event['startNumber'] == this.props.number && event['startMonth'] == this.props.month) {
+        //         this.scheduleScore.push({
+        //             time: `${event['startHour']}:${event['startMinutes']} ${event['startFormat']}`,
+        //             event: `Name event: ${event['nameEvent']}. Location: ${event['location']}. Discription: ${event['discription']}`
+        //         });
+        //     }
+        // }
+        // this.scheduleScore.sort((a, b) => {
+        //     console.log('time', a['time'], b['time'])
+        //     return new Date('1970/01/01 ' + a['time']) - new Date('1970/01/01 ' + b['time']);
+        // });
+        // console.log('this.scheduleScore', this.scheduleScore)
+        // for (let i = 0; i < this.scheduleScore.length; i++) {
+        //     this.bodySchedule.push(
+        //         <div key={i} className="headerOfModal">
+        //             <div className="time">
+        //                 <span>
+        //                     {this.scheduleScore[i]['time']}
+        //                 </span>
+        //             </div>
+        //             <div className="fieldForEvent">{this.scheduleScore[i]['event']}</div>
+        //         </div>
+        //     )
+        // }
 
     }
 /*this.time.map((time, index) =>
@@ -67,26 +68,65 @@ class Day extends Component {
                         </div>
                     ) */
 // ----pass store, TODO: get necessary events
+      
     render() {
+        
+        if (this.props.storeEvents[this.props.month]) {
+            let listEvent = this.props.storeEvents[this.props.month][this.props.number];
+            this.scheduleScore = [];
+            for (let i in listEvent) {
+                this.scheduleScore.push({
+                    time: `${listEvent[i]['startHour']}:${listEvent[i]['startMinutes']} ${listEvent[i]['startFormat']}`,
+                    event: `Name event: ${listEvent[i]['nameEvent']}. Location: ${listEvent[i]['location']}. Discription: ${listEvent[i]['discription']}`
+                });
+            }
+            this.scheduleScore.sort((a, b) => {
+                return new Date('1970/01/01 ' + a['time']) - new Date('1970/01/01 ' + b['time']);
+            });
+            this.bodySchedule = [];
+            for (let i = 0; i < this.scheduleScore.length; i++) {
+                this.bodySchedule.push(
+                    <div key={i} className="headerOfModal">
+                        <div className="time">
+                            <span>
+                                {this.scheduleScore[i]['time']}
+                            </span>
+                        </div>
+                        <div className="fieldForEvent">{this.scheduleScore[i]['event']}</div>
+                    </div>
+                )
+            }
+        }
+        
         return (
-            <div>
+            <div className="mainDayContainer">
                 <div className="wrapper">
                     <div className="container">
                         {this.props.number} {this.props.month}
                     </div>
                 </div>
                 <div className="headerOfModal">
-                    <div className="time">Time</div>
+                    <div className="time">
+                        <FontAwesome
+                        name="clock-o"
+                        />Time</div>
                     <div className="fieldForEvent title"> Event</div>
                     
                 </div>
-                {
-                    this.bodySchedule
+                <div>
+                    {this.bodySchedule}
+                </div>
+                <div className="containerForButton">
+                    <input onClick={this.toggleModal} className="button buttonDay" type="button" value="Create event" />
+                </div>
+                    <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Inpunts" className="modalEvent">
                     
-                }
-                    <input onClick={this.toggleModal} type="button" value="Create event" />
-                    <Modal isOpen={this.state.isActive} onRequestClose={this.toggleModal} contentLabel="Inpunts">
-                        <Event storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} currentMonth={this.props.currentMonth} number={this.props.number} month={this.props.month} />
+                    <FontAwesome onClick={this.toggleModal}
+                        name="times"
+                        className="close closeButtonEvent"
+                        />
+                    
+                        <Event storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} currentMonth={this.props.currentMonth} number={this.props.number} month={this.props.month} rest={this.props.rest} />
                     </Modal>
                     
             </div>

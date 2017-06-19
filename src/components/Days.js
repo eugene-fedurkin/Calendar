@@ -60,9 +60,17 @@ class Days extends Component {
         let row = [];
         for (let i = 1; i <= allDayinCurrentMonth.length; i++) {
             let currentMonthDay = i > this.arrRestDaysInLastMonth.length && i <= (this.arrRestDaysInLastMonth.length + this.arrDaysInMonth.length);
+            let rest;
+            if (i <= this.arrRestDaysInLastMonth.length) {
+                rest = 'prevDays';
+            } else if (i > (this.arrRestDaysInLastMonth.length + this.arrDaysInMonth.length)) {
+                rest = 'nextDays';
+            } else {
+                rest = 'days';
+            }
             row.push(
             <ListOfDays key={i} storeEvents={this.props.storeEvents} addEvent={this.props.addEvent} currentMonth={this.props.currentMonth} number={allDayinCurrentMonth[i - 1]} currentNameMonth={this.props.currentNameMonth} prevNameMonth={this.props.prevNameMonth} nextNameMonth={this.props.nextNameMonth}
-                active={currentMonthDay}>
+                active={currentMonthDay} rest={rest} getRequestEvent={this.props.getRequestEvent}>
             </ListOfDays>
             );
             if (i > 1 && i % 7 === 0) {
@@ -79,7 +87,7 @@ class Days extends Component {
         this.restNumberNextMonth();
         let rows = this.getRows();
         return (
-            <div>
+            <div className="mainDaysContainer">
                 <DayOfTheWeek />
                 {rows}
             </div>

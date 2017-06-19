@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Shadows Into Light', cursive;
+  background: #DAE7F1;
 }
 
 /*  FROM APP.CSS  */
@@ -31,7 +32,7 @@ body {
 }
 .swapperMonths {
   text-align: center;
-  background: #9b59b6;
+  background: #1A212C;
   height: 37px;
   font-size: 27px;
   color: white
@@ -61,6 +62,10 @@ body {
   width: 90%;
   margin: auto;
 }
+.mainDaysContainer {
+  display: flex;
+  flex-direction: column;
+}
 #header {
   height: 50px;
   font-size: 27px;
@@ -69,17 +74,18 @@ body {
 }
 #dates {
   height: 120px;
-  background: #9E9E9E;  
+  background: #DEDBA7;  
   border: 1px solid white;
   margin: -1px;
   color: white;
   width: 14.285%;
-  display: inline-block;
   cursor: pointer;
-  position: relative;
+}
+.indent {
+  display: flex;
 }
 #dates.active {
-  background: #009688;
+  background: #71B095;
 }
 .prevDates, .nextDates {
   background: #9E9E9E!important;
@@ -87,11 +93,10 @@ body {
 
 
 .days {
-  background: #9b59b6;
-  padding: 8px 0px;
+  background: #1A212C;
+  padding: 8px 0px 0 0;
   margin: -1px;
   width: 14.285%;
-  height: 100px;
   color: white;
   border: 1px solid white;
   text-align: center;
@@ -176,13 +181,18 @@ body {
   margin-bottom: 17px;
 }
 .mainInput {
-  padding: 15px 138px 15px 10px;
+  padding: 14px 140px 14px 10px;
   font-size: 23px;
   outline: none;
+  font-family: inherit;
+  background: #EEEEEE;
+  border: 1px solid grey;
+  border-radius: 3px;
 }
 .containerSecondaryInput {
   width: 50%;
-  display: inline-block
+  display: inline-block;
+  
 }
 .secondaryInput {
   display: block;
@@ -190,13 +200,20 @@ body {
   height: 32px;
   font-size: 16px;
   width: 33%;
-  margin: 17px auto;
+  margin: 17px 0 17px -1px;
   outline: none;
+  
 }
 .discriptionEvent {
   width: 570px;
   height: 150px;
   font-size: 14px;
+  outline: none;
+  font-size: inherit;
+  font-family: inherit;
+  background: #EEEEEE;
+  border: 1px solid grey;
+  border-radius: 3px;
 }
 .locationClass {
   width: 417px;
@@ -205,22 +222,31 @@ body {
   font-size: 16px;
   margin: 17px auto;
   outline: none;
+  font-size: inherit;
+  font-family: inherit;
+  background: #EEEEEE;
+  border: 1px solid grey;
+  border-radius: 3px;
 }
 .middleContainer {
   text-align: center;
 }
-#errorStartTime {
-  
-}
 .inputTime {
-  padding: 12px;
+  padding: 10px 10px 6px 7px;
+  min-width: 199px;
+  background: #EEEEEE;
   font-size: 16px;
   width: 13%;
-  min-width: 82px;
-  margin: 17px auto;
-  border: 1px solid black;
+  min-width: 96px;
+  margin: 17px 0px 0px -1px;
+  border: 1px solid grey;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  display: -ms-flexbox;
   display: flex;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: inherit;
 }
 .wrapForIncAndDec {
   display: flex;
@@ -231,9 +257,13 @@ body {
   display: inline-block
 }
 .format {
-  padding: 0px;
+  padding: 0 0 3px 0px;
   height: 56px;
   min-width: 55px;
+  font-family: inherit;
+  border: 1px solid grey;
+  background: #EEEEEE;
+  font-size: inherit;
 }
 .noteForTime {
   padding: 0;
@@ -251,13 +281,78 @@ input::placeholder {
   color: #795548
 }
 .events {
-  position: absolute;
-  background: rebeccapurple;
-  width: 100%;
+  background: #1D7872;
+  margin-bottom: 1px;
+  border-radius: 8px;
 }
 .months {
   display: inline-block;
 }
+.modalDay {
+  background: wheat;
+  height: 1000px;
+  width: 70%;
+  margin: auto;
+  border-radius: 6px;
+  outline: none;
+  padding: 20px;
+  margin-top: 36px;
+}
+.close {
+  position: absolute;
+  left: 83%;
+  color: #1A212C;
+  border: 1px solid #1A212C;
+  padding: 1px 2px 1px 2px;
+  border-radius: 3px;
+}
+.close:hover {
+  border: 1px solid #D13F33;
+  cursor: pointer;
+  color: #D13F33;
+}
+
+.mainDayContainer {
+  margin-top: 30px;
+}
+.buttonDay {
+  margin-top: 12px;
+}
+.buttonDay:active {
+  background: #1D7872;
+}
+.modalEvent {
+    background: #DEDBA7;
+    height: 656px;
+    padding-top: 28px;
+    width: 62%;
+    min-width: 891px;
+    max-width: 1117px;
+    outline: none;
+    margin: auto;
+    margin-top: 39px;
+    position: relative;
+    border-radius: 6px;
+    font-family: 'Shadows Into Light', cursive;
+    color: "#1A212C";
+    font-size: 19px;
+}
+.closeButtonEvent {
+  left: 94%;
+}
+#startEventNumber, #endEventNumber, #hour, #minutes, #hourEnd, #minutesEnd {
+  font-family: inherit;
+  border: 1px solid grey;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background: #EEEEEE;
+  font-size: inherit;
+}
+#hour, #hourEnd, .format {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 /*------------------------------------TOOLTIP-------------------------------------*/
 
 

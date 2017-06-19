@@ -11,19 +11,21 @@ class StartEventInput extends Component {
     handlerHour = (e) => {
         let type = parseInt(+e.target.value);
         if (type < 12 && type >= 0 && (+e.target.value ^ 0) === +e.target.value) { // ----before 12 ???
-            e.target.style.background = '#81C784';
+            e.target.style.background = '#71B095';
+            e.target.style.color = 'white';
             //#81C784
         } else {
-            e.target.style.background = '#E53935';
+            e.target.style.background = '#D13F33';
             e.target.style.color = 'white';
         }
     }
     handlerMinutes = (e) => {
         let type = parseInt(+e.target.value);
         if (type < 60 && type >= '00' && e.target.value.length <= 2 && e.target.value.length > 0) {
-            e.target.style.background = '#81C784';
+            e.target.style.background = '#71B095';
+            e.target.style.color = 'white';
         } else {
-            e.target.style.background = '#E53935';
+            e.target.style.background = '#D13F33';
             e.target.style.color = 'white';
         }
     }

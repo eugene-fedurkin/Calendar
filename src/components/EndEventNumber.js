@@ -17,10 +17,10 @@ class EndEventNumber extends Component {
         const NumbersInMonth = new Date(new Date().getFullYear(),this.props.currentMonth + 1 ,0).getDate();
         
         if (e.target.value <= NumbersInMonth && e.target.value >= 1 && e.target.value.length <= 2) {
-            e.target.style.background = '#81C784';
+            e.target.style.background = '#71B095';
             e.target.style.color = 'white'
         } else {
-            e.target.style.background = '#E53935';
+            e.target.style.background = '#D13F33';
             e.target.style.color = 'white'
         }
     }

@@ -54,12 +54,12 @@ class Input extends Component {
                         <FontAwesome onClick={this.increase}
                             name="increase"
                             className='fa fa-sort-asc'
-                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                            style={{ color: "#1A212C" }}
                             />
                             <FontAwesome onClick={this.decrease}
                             name="dencrease"
                             className='fa fa-sort-desc'
-                            style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                            style={{ color: "#1A212C" }}
                             />
                     </div>
                 </div>
