@@ -4,32 +4,6 @@ body {
   font-family: 'Shadows Into Light', cursive;
   background: #DAE7F1;
 }
-
-/*  FROM APP.CSS  */
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 .titleCalendar {
   text-align: center;
   background: #1A212C;
@@ -45,7 +19,8 @@ body {
   height: 37px;
   font-size: 27px;
   color: white;
-  border: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   line-height: 36px;
 }
 .prevDate {
@@ -101,8 +76,6 @@ body {
 .prevDates, .nextDates {
   background: #9E9E9E!important;
 }
-
-
 .days {
   background: #1A212C;
   padding: 8px 0px 0 0;
@@ -189,7 +162,7 @@ body {
 }
 .button:hover {
   cursor: pointer;
-  background: #4E342E;
+  background: #215F5B;
 }
 .containerMainInput, .containerForButton {
   text-align: center;
@@ -301,12 +274,13 @@ input::placeholder {
   background: #1D7872;
   margin-bottom: 1px;
   border-radius: 8px;
+  padding-left: 10px;
 }
 .months {
   display: inline-block;
 }
 .modalDay {
-  background: wheat;
+  background: #DEDBA7;
   height: 1000px;
   width: 70%;
   margin: auto;
@@ -334,25 +308,26 @@ input::placeholder {
 }
 .buttonDay {
   margin-top: 12px;
-}
-.buttonDay:active {
   background: #1D7872;
 }
+.buttonDay:active {
+  background: #144D49;
+}
 .modalEvent {
-    background: #DEDBA7;
-    height: 656px;
-    padding-top: 28px;
-    width: 62%;
-    min-width: 891px;
-    max-width: 1117px;
-    outline: none;
-    margin: auto;
-    margin-top: 39px;
-    position: relative;
-    border-radius: 6px;
-    font-family: 'Shadows Into Light', cursive;
-    color: "#1A212C";
-    font-size: 19px;
+  background: #DEDBA7;
+  height: 656px;
+  padding-top: 28px;
+  width: 62%;
+  min-width: 891px;
+  max-width: 1117px;
+  outline: none;
+  margin: auto;
+  margin-top: 39px;
+  position: relative;
+  border-radius: 6px;
+  font-family: 'Shadows Into Light', cursive;
+  color: "#1A212C";
+  font-size: 19px;
 }
 .closeButtonEvent {
   left: 94%;
@@ -383,72 +358,4 @@ input::placeholder {
   left: 59%;
   top: 82%;
   font-size: 31px;
-}
-/*------------------------------------TOOLTIP-------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*--------------------------------------------------------------------------------*/
-.container {
-	text-align: center;
-}
-.animation-container {
-	display: inline-block;
-}
-.item {
-	background-color: yellow;
-	width: 400px;
-	text-align: center;
-	padding: 10px 5px;
-	margin-top: 10px;
-	border-radius: 8px;
-	font-weight: 600;
-	color: black;
-}
-.example-enter {
-    opacity: 0;
-    transform:   translate(-250px,0);
-    transform: translate3d(-250px,0,0);
-}
-.example-enter.example-enter-active {
-	opacity: 1;
-	transition: opacity 1s ease;
-	transform:   translate(110px,0);
-	transform: translate3d(110px,0,0);
-	transition-property: transform, opacity;
-	transition-duration: 300ms;
-	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
-}
-.example-leave {
-	opacity: 1;
-	transform:   translate(0,0,0);
-	transform: translate3d(0,0,0);
-  transition-property: transform, opacity;
-	transition-duration: 1300ms;
-	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
-}
-.example-leave.example-leave-active {
-	opacity: 0;
-	transform:   translate(250px,0);
-	transform: translate3d(250px,0,0);
 }

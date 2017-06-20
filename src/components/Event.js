@@ -29,6 +29,7 @@ class Event extends Component {
         };
         this.validity = {
         }
+        this.clearId;
     }
 
     changeNameEvent = e => {
@@ -87,14 +88,14 @@ class Event extends Component {
             this.setState({icon: <FontAwesome
                     className='valid'
                     name='check-square'
-                    />})
-            setTimeout((() => this.setState({icon: null})), 2000)
+                    />});
+                    this.clearId = setTimeout(() => {this.setState({icon: null})}, 200);
         } else {
             this.setState({icon: <FontAwesome
                     name='minus-square'
                     className='notValid'
                     />})
-           setTimeout((() => this.setState({icon: null})), 2000)
+           setTimeout((() => this.setState({icon: null})), 200)
         }
     }
 
@@ -126,7 +127,7 @@ class Event extends Component {
                     <textarea onChange={this.changeDiscription} className="discriptionEvent" placeholder="Discription"/>
                 </div>
                 <div className="containerForButton">
-                    <input onClick={this.create} className="button" type="button" value="Add event" />
+                    <input onClick={this.create} className="button buttonDay" type="button" value="Add event" />
                     {this.state.icon}
                    
                 </div>

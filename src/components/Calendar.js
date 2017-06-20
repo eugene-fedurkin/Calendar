@@ -66,7 +66,6 @@ class Calendar extends Component {
                     nextEvent.push({nameEvent: `+ ${nextEvent.splice(2, nextEvent.length - 1).length} more`});
                 }
             }
-            
             return {
                     lastEvent: lastEvent,
                     nextEvent: nextEvent,

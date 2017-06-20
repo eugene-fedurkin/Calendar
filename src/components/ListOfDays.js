@@ -27,9 +27,11 @@ class ListOfDays extends Component {
         });
     }
     _handlers = (e) => {
-        if (+e.currentTarget.firstChild.innerText > 22 && e.target.parentElement === e.target.parentElement.parentElement.children[1]) {
+        if (+e.currentTarget.firstChild.innerText > 22 && e.target.parentElement.parentElement === e.target.parentElement.parentElement.parentElement.children[1]
+            || +e.currentTarget.firstChild.innerText > 22 && e.target.parentElement === e.target.parentElement.parentElement.children[1]) {
             this.monthOfModal = this.props.prevNameMonth;
-        } else if (+e.currentTarget.firstChild.innerText < 7 && e.target.parentElement === e.target.parentElement.parentElement.lastChild) {
+        } else if (+e.currentTarget.firstChild.innerText < 7 && e.target.parentElement === e.target.parentElement.parentElement.lastChild
+            || +e.currentTarget.firstChild.innerText < 7 && e.target.parentElement.parentElement === e.target.parentElement.parentElement.parentElement.lastChild) {
             this.monthOfModal = this.props.nextNameMonth
         } else {
             this.monthOfModal = this.props.currentNameMonth
