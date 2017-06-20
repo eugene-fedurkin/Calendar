@@ -30,23 +30,34 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.titleCalendar {
+  text-align: center;
+  background: #1A212C;
+  height: 37px;
+  font-size: 27px;
+  color: white;
+  border: 1px solid white;
+  margin-bottom: -1px;
+}
 .swapperMonths {
   text-align: center;
   background: #1A212C;
   height: 37px;
   font-size: 27px;
-  color: white
+  color: white;
+  border: 1px solid white;
+  line-height: 36px;
 }
 .prevDate {
   float: left;
   font-size: 18px;
-  margin: 8px 0 0 15px;
+  margin-left: 15px;
   cursor: pointer;
 }
 .nextDate {
   float: right;
   font-size: 18px;
-  margin: 8px 15px 0 0;
+  margin-right: 15px;
   cursor: pointer;
 }
 .prevDate span {
@@ -126,8 +137,11 @@ body {
   text-align: center;
   overflow: hidden;
   font-size: 21px;
-  background: #EEEEEE
-  
+  background: #EEEEEE;
+  height: 79px;
+}
+.headTime, .title {
+  height: 45px!important;
 }
 .wrapper {
   text-align: right;
@@ -149,9 +163,10 @@ body {
   display: inline-block;
   width: 90%;
   border: 1px solid black;
-  height: 50px;
+  height: 79px;
   cursor: pointer;
-  background: #EEEEEE
+  background: #EEEEEE;
+  overflow: hidden;
 }
 .title {
   text-align: center;
@@ -188,6 +203,7 @@ body {
   background: #EEEEEE;
   border: 1px solid grey;
   border-radius: 3px;
+  margin-top: 60px;
 }
 .containerSecondaryInput {
   width: 50%;
@@ -214,6 +230,7 @@ body {
   background: #EEEEEE;
   border: 1px solid grey;
   border-radius: 3px;
+  resize: none;
 }
 .locationClass {
   width: 417px;
@@ -300,10 +317,10 @@ input::placeholder {
 }
 .close {
   position: absolute;
-  left: 83%;
+  left: 84%;
   color: #1A212C;
   border: 1px solid #1A212C;
-  padding: 1px 2px 1px 2px;
+  padding: 0px 2px 1px 2px;
   border-radius: 3px;
 }
 .close:hover {
@@ -339,6 +356,7 @@ input::placeholder {
 }
 .closeButtonEvent {
   left: 94%;
+  padding: 0px 2px 0px 2px;
 }
 #startEventNumber, #endEventNumber, #hour, #minutes, #hourEnd, #minutesEnd {
   font-family: inherit;
@@ -352,7 +370,20 @@ input::placeholder {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-
+.notValid {
+  color: #D13F33;
+  position: absolute;
+  left: 59%;
+  top: 82%;
+  font-size: 31px;
+}
+.valid {
+  color: #71B095;
+  position: absolute;
+  left: 59%;
+  top: 82%;
+  font-size: 31px;
+}
 /*------------------------------------TOOLTIP-------------------------------------*/
 
 

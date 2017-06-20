@@ -9,19 +9,22 @@ class StartEventNumber extends Component {
             number: props.number,
             month: props.month
         };
+        this.validity = {startNumber: null};
     }
 
     handlerNumber = (e) => {
         this.setState({number: e.target.value});
         const NumbersInMonth = new Date(new Date().getFullYear(),this.props.currentMonth + 1 ,0).getDate();
-        
         if (e.target.value <= NumbersInMonth && e.target.value >= 1 && e.target.value.length <= 2) {
             e.target.style.background = '#71B095';
-            e.target.style.color = 'white'
+            e.target.style.color = 'white';
+            this.validity.startNumber = 'valid';
         } else {
             e.target.style.background = '#D13F33';
             e.target.style.color = 'white'
+            this.validity.startNumber = 'not valid';
         }
+        this.props.checkValidity(this.validity);
     }
     getNumber = (e) => {
         this.setState({ number: e.target.value });

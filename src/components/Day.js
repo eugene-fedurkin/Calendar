@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import FontAwesome from 'react-fontawesome';
-
 import Event from './Event'
 
+import FontAwesome from 'react-fontawesome';
 import Modal from 'react-modal';
 
 class Day extends Component {
@@ -12,7 +11,6 @@ class Day extends Component {
         this.state = {
             isActive: false
         }
-        /*this.time = ['1:00 a.m', '2:00 a.m', '3:00 a.m', '4:00 a.m', '5:00 a.m', '6:00 a.m', '7:00 a.m', '8:00 a.m', '9:00 a.m', '10:00 a.m', '11:00 a.m', '12:00 a.m', '1:00 p.m', '2:00 p.m', '3:00 p.m', '4:00 p.m', '5:00 p.m', '6:00 p.m', '7:00 p.m', '8:00 p.m', '9:00 p.m', '10:00 p.m', '11:00 p.m', '12:00 p.m'];*/
         this.time = [];
         this.events = [];
         this.scheduleScore = [];
@@ -26,49 +24,7 @@ class Day extends Component {
             isActive: !this.state.isActive
         });
     }
-    componentWillMount() {
-        
 
-
-        // for (let event of this.props.storeEvents) {
-        //     if (event['startNumber'] == this.props.number && event['startMonth'] == this.props.month) {
-        //         this.scheduleScore.push({
-        //             time: `${event['startHour']}:${event['startMinutes']} ${event['startFormat']}`,
-        //             event: `Name event: ${event['nameEvent']}. Location: ${event['location']}. Discription: ${event['discription']}`
-        //         });
-        //     }
-        // }
-        // this.scheduleScore.sort((a, b) => {
-        //     console.log('time', a['time'], b['time'])
-        //     return new Date('1970/01/01 ' + a['time']) - new Date('1970/01/01 ' + b['time']);
-        // });
-        // console.log('this.scheduleScore', this.scheduleScore)
-        // for (let i = 0; i < this.scheduleScore.length; i++) {
-        //     this.bodySchedule.push(
-        //         <div key={i} className="headerOfModal">
-        //             <div className="time">
-        //                 <span>
-        //                     {this.scheduleScore[i]['time']}
-        //                 </span>
-        //             </div>
-        //             <div className="fieldForEvent">{this.scheduleScore[i]['event']}</div>
-        //         </div>
-        //     )
-        // }
-
-    }
-/*this.time.map((time, index) =>
-                        <div key={index} className="headerOfModal">
-                            <div className="time">
-                                <span>{time}</span>
-                            </div>
-                            <div onClick={this.toggleModal} className="fieldForEvent">
-                                {this.events[index]}
-                            </div>
-                        </div>
-                    ) */
-// ----pass store, TODO: get necessary events
-      
     render() {
         
         if (this.props.storeEvents[this.props.month]) {
@@ -77,7 +33,19 @@ class Day extends Component {
             for (let i in listEvent) {
                 this.scheduleScore.push({
                     time: `${listEvent[i]['startHour']}:${listEvent[i]['startMinutes']} ${listEvent[i]['startFormat']}`,
-                    event: `Name event: ${listEvent[i]['nameEvent']}. Location: ${listEvent[i]['location']}. Discription: ${listEvent[i]['discription']}`
+                    event: <div>
+                                <div>
+                                    <b>Name event:</b> {listEvent[i]['nameEvent']}.
+                                </div>
+                                <div>
+                                    <b>Location:</b> {listEvent[i]['location']}.
+                                </div>
+                                <div>
+                                   <b>Discription:</b> {listEvent[i]['discription']}
+                                </div>
+                        
+                            </div>
+                         
                 });
             }
             this.scheduleScore.sort((a, b) => {
@@ -97,7 +65,7 @@ class Day extends Component {
                 )
             }
         }
-        
+
         return (
             <div className="mainDayContainer">
                 <div className="wrapper">
@@ -106,7 +74,7 @@ class Day extends Component {
                     </div>
                 </div>
                 <div className="headerOfModal">
-                    <div className="time">
+                    <div className="time headTime">
                         <FontAwesome
                         name="clock-o"
                         />Time</div>

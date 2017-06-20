@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import Days from './Days';
 import Month from './Month';
+
+import FontAwesome from 'react-fontawesome';
 
 class Calendar extends Component {
     constructor(props) {
@@ -11,6 +14,7 @@ class Calendar extends Component {
         };
         this.month = ['January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'];
+        this.year = new Date().getFullYear();
     }
 
     prevClick = () => {
@@ -23,10 +27,8 @@ class Calendar extends Component {
             this.setState({ currentMonth: this.state.currentMonth + 1 });
         }
     }
-
     addEvent = event => {
         var copy = Object.assign({},  this.state.storeEvents);
-        console.log('start', this.state.storeEvents)
         if (!copy[event.startMonth]) {
             copy[event.startMonth] = [];
         }
@@ -35,14 +37,8 @@ class Calendar extends Component {
         }
         copy[event.startMonth][event.startNumber].push(event);
         this.setState({ storeEvents: copy });
-        console.log('11111', this.state.storeEvents)
     }
-        // this.setState({ storeEvents: [[this.month.indexOf(event.startMonth)]] })
-        // let newState = this.state.storeEvents.slice();
-        // newState.push(event);
-        //this.setState({storeEvents: newState});
     getRequestEvent = (props) => {
-        console.log('month', this.state.storeEvents[props.month])
         let lastEvent;
         let nextEvent;
         let event;
@@ -77,48 +73,18 @@ class Calendar extends Component {
                     event: event
             }
         }
-
-
-
-
-
-
-        // for (let event of this.state.storeEvents) {
-        //     console.log('request')
-        //     let prevMonth = that.month[that.state.currentMonth - 1];
-        //     let nextMonth = that.month[that.state.currentMonth + 1];
-
-        //     if (event['startNumber'] == props.number && event['startMonth'] == prevMonth && props.rest === 'prevDays') {
-        //         resultLast.push([event['nameEvent']]);
-        //     } else if (event['startNumber'] == props.number && event['startMonth'] == that.month[that.state.currentMonth] && props.rest === 'days') {
-        //         resultActive.push([event['nameEvent']]);
-        //     } else if (event['startNumber'] == props.number && event['startMonth'] == nextMonth && props.rest === 'nextDays'){
-        //         resultNext.push([event['nameEvent']]);
-        //     }
-        // } //---need life cycle
-        // if (resultActive.length > 3) {
-        //     restEvent.push(resultActive.splice(2, resultActive.length - 1));
-        //     resultActive.push(`+ ${restEvent[0].length} more`)
-        // }
-        // if (resultLast.length > 3) {
-        //     restEvent.push(resultLast.splice(2, resultLast.length - 1));
-        //     resultLast.push(`+ ${restEvent[0].length} more`)
-        // }
-        // if (resultNext.length > 3) {
-        //     restEvent.push(resultNext.splice(2, resultNext.length - 1));
-        //     resultNext.push(`+ ${restEvent[0].length} more`)
-        // }
-        // return {
-        //     resultActive: resultActive,
-        //     resultLast: resultLast,
-        //     resultNext: resultNext
-        // };
     }
 
     render() {
-        console.log(this.state.storeEvents)
         return (
             <div id="calendar">
+                <div className="titleCalendar">
+                    <FontAwesome
+                    name="calendar"
+                    style={{ fontSize: "15px",
+                             marginRight: "5px" }}/>
+                    Year {this.year} Calendar
+                </div>
                 <Month onPrev={this.prevClick} onNext={this.nextClick}
                     currentMonth={this.state.currentMonth} listMonths={this.month} />
                 <Days storeEvents={this.state.storeEvents} addEvent={this.addEvent}

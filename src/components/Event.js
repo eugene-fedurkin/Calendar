@@ -5,6 +5,8 @@ import EndEventInput from './EndEventInput';
 import EndEventNumber from './EndEventNumber';
 import StartEventNumber from './StartEventNumber';
 
+import FontAwesome from 'react-fontawesome';
+
 class Event extends Component {
     constructor(props) {
         super(props);
@@ -14,16 +16,19 @@ class Event extends Component {
             startMonth: props.month,
             endNumber: props.number,
             endMonth: props.month,
-            startHour: new Date().getHours(),
+            startHour: new Date().getHours() % 12,
             startMinutes: '00',
             startFormat: new Date().getHours() > 12 ? 'pm' : 'am',
             endHour: null,
             endMinutes: null,
             endFormat: null,
-            location: null,
-            discription: null,
-            rest: this.props.rest // request?
+            location: 'City',
+            discription: 'An important event',
+            rest: this.props.rest,
+            icon: null
         };
+        this.validity = {
+        }
     }
 
     changeNameEvent = e => {
@@ -33,62 +38,67 @@ class Event extends Component {
     changeStartNumber = value => {
         this.setState({ startNumber: value });
     }
-
     changeStartMonth = value => {
         this.setState({ startMonth: value });
     }
-
     changeEndNumber = value => {
         this.setState({ endNumber: value });
     }
-
     changeEndMonth = value => {
         this.setState({ endMonth: value });
     }
-
     changeStartHour = value => {
         this.setState({ startHour: value });
     }
-
     changeStartMinutes = value => {
         this.setState({ startMinutes: value });
     }
-
     changeStartFormat = value => {
         this.setState({ startFormat: value });
     }
-
     changeEndHour = value => {
         this.setState({ endHour: value });
     }
-
     changeEndMinutes = value => {
         this.setState({ endMinutes: value });
     }
-
     changeEndFormat = value => {
         this.setState({ endFormat: value });
     }
-
     changeEndFormat = value => {
         this.setState({ endFormat: value });
     }
-
     changeLocation = e => {
         this.setState({ location: e.target.value });
     }
-
     changeDiscription = e => {
         this.setState({ discription: e.target.value });
     }
 
+    checkValidity = (valid) => {
+        for (let prop in valid) {
+            this.validity[prop] = valid[prop];
+        }
+        console.log(this.validity)
+    }
     create = () => {
-        console.log('create')
-        this.props.addEvent(this.state);
+        if (this.validity.startNumber !== 'not valid' && this.validity.startHour !== 'not valid' && this.validity.startMinutes !== 'not valid') {
+            this.props.addEvent(this.state);
+            this.setState({icon: <FontAwesome
+                    className='valid'
+                    name='check-square'
+                    />})
+            setTimeout((() => this.setState({icon: null})), 2000)
+        } else {
+            this.setState({icon: <FontAwesome
+                    name='minus-square'
+                    className='notValid'
+                    />})
+           setTimeout((() => this.setState({icon: null})), 2000)
+        }
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className="containerMainInput">
                 <div className="containerMainInput">
@@ -98,16 +108,16 @@ class Event extends Component {
                     <StartEventNumber startNumber={this.changeStartNumber} startMonth={this.changeStartMonth}
                         currentMonth={this.props.currentMonth}
                         number={this.state.startNumber}
-                        month={this.state.startMonth} />
+                        month={this.state.startMonth} checkValidity={this.checkValidity} />
                     <EndEventNumber endNumber={this.changeEndNumber}
                         endMonth={this.changeEndMonth}
                         currentMonth={this.props.currentMonth}
                         number={this.state.endNumber}
-                        month={this.state.endMonth} />
+                        month={this.state.endMonth} checkValidity={this.checkValidity} />
                 </div>
                 <div className="containerSecondaryInput">
                     <div>
-                        <StartEventInput startHour={this.changeStartHour} startMinutes={this.changeStartMinutes} startFormat={this.changeStartFormat} hour={this.state.startHour} minutes={this.state.startMinutes} />
+                        <StartEventInput startHour={this.changeStartHour} startMinutes={this.changeStartMinutes} startFormat={this.changeStartFormat} hour={this.state.startHour} minutes={this.state.startMinutes} checkValidity={this.checkValidity} />
                         <EndEventInput endHour={this.changeEndHour} endMinutes={this.changeEndMinutes} endFormat={this.changeEndFormat} />
                     </div>
                 </div>
@@ -117,6 +127,8 @@ class Event extends Component {
                 </div>
                 <div className="containerForButton">
                     <input onClick={this.create} className="button" type="button" value="Add event" />
+                    {this.state.icon}
+                   
                 </div>
 
             </div>

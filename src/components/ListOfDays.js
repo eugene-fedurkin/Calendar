@@ -15,7 +15,7 @@ class ListOfDays extends Component {
         this.minutesStart = null;
         this.state = {
             isActive: false,
-            store: [] // ???
+            store: []
         }
     }
         componentWillMount() {
@@ -35,23 +35,14 @@ class ListOfDays extends Component {
             this.monthOfModal = this.props.currentNameMonth
         }
         this.dayOfModal = e.currentTarget.children[0].innerText;
-        console.log('this.props.prevNameMonth', this.props.prevNameMonth)
         this.toggleModal();
-    }
-    storeEvents = (nameEvent) => { // ???
-        console.log('nameEvent', nameEvent);
-        let newState = this.state.store.slice();
-        newState.push(nameEvent);
-        this.setState({store: newState});
-        console.log('this.state.store', this.state.store);
-
     }
 
     render() {
         const props = {
             number: this.props.number,
             month: this.props.currentNameMonth,
-            rest: this.props.rest, // request?
+            rest: this.props.rest,
             monthNumber: this.monthOfModal
         }
         let events = this.props.getRequestEvent(props);
@@ -75,37 +66,6 @@ class ListOfDays extends Component {
                         </div>
                     )
         }
-
-
-        
-       /* if (this.props.rest === 'prevDays') {
-            event = events.resultLast.map((event, index) => 
-                    <div key={index} className ="events">
-                        {event}
-                    </div>
-                )
-        }*/
-
-
-        // if (this.props.rest === 'prevDays') {
-        //     event = events.resultLast.map((event, index) => 
-        //             <div key={index} className ="events">
-        //                 {event}
-        //             </div>
-        //         )
-        // } if (this.props.rest === 'days') {
-        //     event = events.resultActive.map((event, index) => 
-        //             <div key={index} className ="events">
-        //                 {event}
-        //             </div>
-        //         )
-        // } if (this.props.rest === 'nextDays') {
-        //     event = events.resultNext.map((event, index) => 
-        //             <div key={index} className ="events">
-        //                 {event}
-        //             </div>
-        //         )
-        // }
 
         return(
             <div onClick={this._handlers} id="dates" className={'datesClass' + (this.props.active ? ' active' : '') }>
