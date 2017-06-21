@@ -10,7 +10,8 @@ body {
   height: 37px;
   font-size: 27px;
   color: white;
-  border: 1px solid white;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
   margin-bottom: -1px;
 }
 .swapperMonths {
@@ -47,6 +48,7 @@ body {
 #calendar {
   width: 90%;
   margin: auto;
+  margin-top: 35px;
 }
 .mainDaysContainer {
   display: flex;
